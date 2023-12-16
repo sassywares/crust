@@ -11,8 +11,6 @@ name: Crusty
 
 on:
   push:
-    branches:
-      - main
     tags:
       - "*"
 
