@@ -47,7 +47,7 @@ jobs:
       - run: npm run release.prepare
 
       # Publish to NPM
-      - run: npm run release.publish
+      - run: cd dist && npm publish --access public
         env:
           # This is the NPM token used to publish the package to NPM, you only need this if you've enabled publishing with access tokens. Read more about this [here](https://docs.npmjs.com/about-access-tokens). Once you have the token in NPM, you'll have to add it as a secret in the GitHub repository. Read more about GitHub secrets [here](https://docs.github.com/en/actions/reference/encrypted-secrets).
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
