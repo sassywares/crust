@@ -31,7 +31,6 @@ jobs:
           release_name: v${{ github.ref }}
           draft: false
           prerelease: false
-          body_path: ../../CHANGELOG.md
 
   publish-to-npm:
     runs-on: ubuntu-latest
