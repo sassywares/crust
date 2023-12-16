@@ -29,7 +29,7 @@
     "dev": "tsc -w",
     "build": "tsc",
     "commit": "bash ./.scripts/commit.sh",
-    "push": "git push && git push --follow-tags",
+    "push": "git push && git push --tags",
     "release.prepare": "bash ./.scripts/release-prepare.sh",
     "release.publish": "bash ./.scripts/release-publish.sh",
     "release.version": "bash ./.scripts/release-version.sh",
