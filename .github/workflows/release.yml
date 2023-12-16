@@ -1,0 +1,56 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+# In order to use this workflow, use the `npm run release:version` command to version your package and create a git tag.
+# The workflow then runs whenever a new git tag is pushed to the repository and creates a release as well as publishes it to NPM.
+
+# If you do not wish to use GitHub actions, use the `npm run release` command to create a new release locally as well as publish it to npm.
+# In this case, you can remove the entire `jobs` section below or disable the workflow in the GitHub Actions UI.
+
+name: Crusty
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "*"
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+      - uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: v${{ github.ref }}
+          draft: false
+          prerelease: false
+          body_path: CHANGELOG.md
+
+  publish-to-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+      # Install deps
+      - run: npm i
+
+      # Prepare release
+      - run: npm run release.prepare
+
+      # Publish to NPM
+      - run: npm run release.publish
+        env:
+          # This is the NPM token used to publish the package to NPM, you only need this if you've enabled publishing with access tokens. Read more about this [here](https://docs.npmjs.com/about-access-tokens). Once you have the token in NPM, you'll have to add it as a secret in the GitHub repository. Read more about GitHub secrets [here](https://docs.github.com/en/actions/reference/encrypted-secrets).
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
