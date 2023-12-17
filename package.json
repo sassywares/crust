@@ -22,10 +22,10 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint.fix": "eslint . --fix",
     "test": "vitest run",
-    "test:watch": "vitest",
-    "format": "npm run lint:fix && prettier --write .",
+    "test.watch": "vitest",
+    "format": "npm run lint.fix && prettier --write .",
     "dev": "tsc -w",
     "build": "tsc",
     "commit": "bash ./.scripts/commit.sh",
