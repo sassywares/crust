@@ -7,7 +7,7 @@
 # If you do not wish to use GitHub actions, use the `npm run release` command to create a new release locally as well as publish it to npm.
 # In this case, you can remove the entire `jobs` section below or disable the workflow in the GitHub Actions UI.
 
-name: Crusty
+name: Release crust
 
 on:
   push:
@@ -49,5 +49,5 @@ jobs:
       # Publish to NPM
       - run: npm run release.publish
         env:
-          # This is the NPM token used to publish the package to NPM, you only need this if you've enabled publishing with access tokens. Read more about this [here](https://docs.npmjs.com/about-access-tokens). Once you have the token in NPM, you'll have to add it as a secret in the GitHub repository. Read more about GitHub secrets [here](https://docs.github.com/en/actions/reference/encrypted-secrets).
+          # This is the NPM token used to publish the package to NPM, you only need this if you've enabled publishing with access tokens. Read more about this [here](https://kashanahmad.me/blog/how-to-trigger-gh-actions-on-tag).
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
