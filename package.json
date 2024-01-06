@@ -1,6 +1,7 @@
 {
   "name": "@sassywares/crust",
   "version": "1.0.8",
+  "type": "module",
   "description": "Crust is a simple boilerplate for creating and publishing packages to NPM. It includes a basic configuration for TypeScript, ESLint, Prettier, Vitest, and Changesets as well as a simple list of scripts for linting, testing, building, and publishing your package as well as a simple CI/CD workflow for GitHub Actions",
   "main": "src/index.ts",
   "keywords": [
