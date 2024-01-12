@@ -7,7 +7,7 @@
 # If you do not wish to use GitHub actions, use the `npm run release` command to create a new release locally as well as publish it to npm.
 # In this case, you can remove the entire `jobs` section below or disable the workflow in the GitHub Actions UI.
 
-name: Release crust
+name: CI
 
 on:
   push:
