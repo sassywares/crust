@@ -19,3 +19,6 @@ echo "Generated git tag: $version"
 
 # 4. Commit, stage, and push the release
 npm run commit && npm run push && echo 'Pushed tags to Remote';
+
+# 5. Copy necessary files to the release directory
+cp package.json LICENSE README.md CONTRIBUTING.md dist;
