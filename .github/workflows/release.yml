@@ -1,53 +1,42 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+name: Release
 
-# In order to use this workflow, use the `npm run release:version` command to version your package and create a git tag.
-# The workflow then runs whenever a new git tag is pushed to the repository and creates a release as well as publishes it to NPM.
-
-# If you do not wish to use GitHub actions, use the `npm run release` command to create a new release locally as well as publish it to npm.
-# In this case, you can remove the entire `jobs` section below or disable the workflow in the GitHub Actions UI.
-
-name: CI
+permissions:
+  contents: write
+  id-token: write
 
 on:
-  push:
-    tags:
-      - "*"
+  workflow_dispatch:
 
 jobs:
-  create-release:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
         with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org/
-      - uses: actions/create-release@v1
+          fetch-depth: 0
+
+      - name: Git config
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          run_install: |
+            - args: [--frozen-lockfile]
+
+      - name: Release
+        run: npx release-it --verbose
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Crust@v${{ github.ref }}
-          draft: false
-          prerelease: false
-
-  publish-to-npm:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org/
-      # Install deps
-      - run: npm i
-
-      # Prepare release
-      - run: npm run release.prepare
-
-      # Publish to NPM
-      - run: npm run release.publish
-        env:
-          # This is the NPM token used to publish the package to NPM, you only need this if you've enabled publishing with access tokens. Read more about this [here](https://kashanahmad.me/blog/how-to-trigger-gh-actions-on-tag).
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          # Add following line if you are publishing to npm
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_CONFIG_PROVENANCE: true
+          # Add more env variables if needed

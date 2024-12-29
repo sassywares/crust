@@ -1,8 +1,0 @@
-{
-  "rules": {},
-  "root": true,
-  "plugins": ["@typescript-eslint"],
-  "parser": "@typescript-eslint/parser",
-  "ignorePatterns": ["node_modules/", "dist/"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"]
-}

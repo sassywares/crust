@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/release-it/schema/release-it.json",
+  "plugins": {
+    "release-it-pnpm": {
+      "inFile": "CHANGELOG.md"
+    }
+  },
+  "git": {
+    "tagName": "v${version}",
+    "commitMessage": "chore: release v${version}"
+  }
+}

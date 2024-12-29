@@ -1,63 +1,57 @@
 {
-  "name": "@sassywares/crust",
   "version": "1.0.8",
   "type": "module",
-  "description": "Crust is a simple boilerplate for creating and publishing packages to NPM. It includes a basic configuration for TypeScript, ESLint, Prettier, Vitest, and Changesets as well as a simple list of scripts for linting, testing, building, and publishing your package as well as a simple CI/CD workflow for GitHub Actions",
-  "main": "src/index.ts",
+  "name": "@sassywares/crust",
+  "description": "Batteries included boilerplate for painless TypeScript library development — By the Sassywares team",
+  "packageManager": "pnpm@9.12.3",
   "keywords": [
-    "boilerplate",
+    "starter",
+    "library",
     "typescript",
-    "eslint",
-    "prettier",
-    "changesets"
+    "boilerplate"
   ],
   "author": {
-    "name": "Kashan Ahmad",
-    "url": "https://kashanahmad.me",
-    "email": "kashanahmad.me@gmail.com"
+    "url": "https://sassywares.com/people/kay",
+    "name": "Kay",
+    "email": "kay@sassywares.com"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sassywares/crust.git"
   },
-  "license": "MIT",
-  "scripts": {
-    "lint": "eslint .",
-    "lint.fix": "eslint . --fix",
-    "test": "vitest run",
-    "test.watch": "vitest",
-    "format": "npm run lint.fix && prettier --write .",
-    "dev": "tsc -w",
-    "build": "tsc",
-    "commit": "bash ./.scripts/commit.sh",
-    "push": "git push && git push --tags",
-    "release.prepare": "bash ./.scripts/release-prepare.sh",
-    "release.publish": "bash ./.scripts/release-publish.sh",
-    "release.version": "bash ./.scripts/release-version.sh",
-    "release": "bash ./.scripts/release.sh",
-    "release.dry": "npm run release.prepare && bash ./.scripts/release-publish.sh --dry-run",
-    "clean": "rm -rf dist node_modules package-lock.json yarn.lock npm run-lock.yaml && npm cache clean --force"
-  },
-  "devDependencies": {
-    "@changesets/cli": "^2.27.1",
-    "@types/node": "^18.19.3",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "eslint": "^8.55.0",
-    "jsdom": "^23.1.0",
-    "prettier": "^2.8.8",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.10",
-    "vitest": "^1.0.4"
-  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "require": "./index.js"
-    },
-    "./package.json": "./package.json",
-    "./README.md": "./README.md",
-    "./LICENSE": "./LICENSE",
-    "./CONTRIBUTING.md": "./CONTRIBUTING.md"
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    }
+  },
+  "scripts": {
+    "lint": "eslint ./src",
+    "lint.fix": "eslint ./src --fix",
+    "format": "pnpm lint.fix && prettier --write ./src",
+    "test": "vitest run",
+    "test.watch": "vitest",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "release": "release-it --ci",
+    "cleanup": "pnpm dlx rimraf dist node_modules && npm cache clean --force"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "release-it": "^17.11.0",
+    "release-it-pnpm": "^4.6.3",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.18.2",
+    "vite": "^6.0.3"
   }
 }
