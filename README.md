@@ -1,4 +1,4 @@
-![Crust](./public/cover-github.png)
+![Crust](./public/cover-readme.png)
 
 # 🍞 Crust
 
