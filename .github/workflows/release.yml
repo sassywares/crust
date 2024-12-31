@@ -33,10 +33,8 @@ jobs:
             - args: [--frozen-lockfile]
 
       - name: Release
-        run: npx release-it --verbose
+        run: npx release-it --ci --verbose
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          # Add following line if you are publishing to npm
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_TOKEN}}
           NPM_CONFIG_PROVENANCE: true
-          # Add more env variables if needed
