@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "name": "@sassywares/crust",
   "description": "Batteries included boilerplate for painless TypeScript library development — By the Sassywares team",
