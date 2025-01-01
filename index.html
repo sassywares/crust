@@ -140,6 +140,15 @@
         }
       }
 
+      /* Animations */
+      .animate-fade-in-down {
+        animation: fadeInDown 0.5s ease-in;
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInUp 0.5s ease-in;
+      }
+
       /* Keyframes for animations */
       @keyframes fadeInDown {
         from {
@@ -149,17 +158,6 @@
         to {
           opacity: 1;
           transform: translateY(0);
-        }
-      }
-
-      @keyframes fadeInRight {
-        from {
-          opacity: 0;
-          transform: translateX(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
         }
       }
 
@@ -176,7 +174,7 @@
     </style>
   </head>
   <body>
-    <header>
+    <header class="animate-fade-in-down">
       <nav>
         <a
           rel="noopener noreferrer"
@@ -261,21 +259,16 @@
         >
           <img
             alt="Sassywares"
-            src="/sassywares.png"
-            class="w-20 max-w-40 animate-[fadeInRight_1s_ease-in] md:w-[7.5vw]"
+            src="./sassywares.png"
             width="{200}"
             height="{200}"
           />
         </a>
       </div>
     </header>
-    <footer class="animate-[fadeInUp_0.5s_ease-in]">
-      <h1
-        class="text-[16vw] font-bold leading-[0.85] tracking-tighter text-white"
-      >
-        Crust 🍞
-      </h1>
-      <p class="mt-8 text-lg text-white md:text-[2vw]">
+    <footer class="animate-fade-in-up">
+      <h1>Crust 🍞</h1>
+      <p>
         Batteries included boilerplate for painless TypeScript library
         development
       </p>
