@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.3
+
+*No significant changes*
+
+##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/sassywares/crust/compare/v1.1.2...1.1.3)
+
 ## 1.1.2
 
 *No significant changes*
